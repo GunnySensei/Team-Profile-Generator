@@ -3,19 +3,34 @@ const inquirer = require('inquirer');
 const promptUser = () => {
     return inquirer.prompt([
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'userType',
             message: 'Please enter the type of user: ',
-            choices: ['Manager', 'Engineer', 'Intern']
-        },
-        {
-            
+            choices: ['Manager', 'Engineer', 'Intern', 'End program'],
         }
-    ]);
-    
+    ])
+    .then(userTypeAnswer => {
+        console.log(userTypeAnswer.userType);
+        if(userTypeAnswer.userType === 'Manager') {
+            managerEntry(); 
+        } else if(userTypeAnswer.userType === 'Engineer') {
+            engineerEntry()
+        } else if(userTypeAnswer.userType === 'Intern') {
+            internEntry()
+        } else if(userTypeAnswer.userType === 'End program') {
+            generateHTML(pageData);
+        } else {
+            console.log('Please make a selection!')
+        }
+    });
 }
 
 const managerEntry = () => {
+    console.log(`
+    ===============================
+    Enter the Managers Information!
+    ===============================
+    `)
     return inquirer.prompt([
         {
             type: 'input',
@@ -65,9 +80,16 @@ const managerEntry = () => {
                 }
             }
         }
-    ]);
+    ])
+    .then(answers => 
+        promptUser());
 }
 const engineerEntry = () => {
+    console.log(`
+    ===============================
+    Enter the Engineer's Information!
+    ===============================
+    `)
     return inquirer.prompt([
         {
             type: 'input',
@@ -117,9 +139,16 @@ const engineerEntry = () => {
                 }
             }
         }
-    ]);
+    ])
+    .then(answers => 
+        promptUser());
 }
 const internEntry = () => {
+    console.log(`
+    ===============================
+    Enter the Intern's Information!
+    ===============================
+    `)
     return inquirer.prompt([
         {
             type: 'input',
@@ -169,7 +198,13 @@ const internEntry = () => {
                 }
             }
         }
-    ]);
+    ])
+    .then(answers => 
+        promptUser());
+}
+
+const generateHTML = (pageData) => {
+    console.log(pageData);
 }
 
 
