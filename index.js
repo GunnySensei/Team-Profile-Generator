@@ -57,14 +57,14 @@ const promptUser = () => {
       },
     ])
     .then((answers) => {
-      const manager = new Manager(
-        answers.managerName,
-        answers.managerId,
-        answers.managerEmail,
-        answers.managerOfficeNumber
+      const employee = new Employee(
+        answers.employeeName,
+        answers.employeeName,
+        answers.employeeEmail
       );
-      teamMembers.push(manager);
-      idArray.push(answers.managerId);
+      managerEntry(employee);
+      teamMembers.push(employee);
+      idArray.push(answers.employeeId);
       createTeam();
     });
 };
@@ -97,25 +97,25 @@ function createTeam() {
     });
 }
 
-const managerEntry = () => {
-  inquirer.prompt({
-    type: "input",
-    name: "managerOfficeNumber",
-    message: "Please enter the Manager's office number: ",
-    validate: (officeInput) => {
-      if (officeInput) {
-        return true;
-      } else {
-        console.log("Please enter a name!");
-        return false;
-      }
-    },
-  })
-  .then((answers) {
-      const manager = new Manager(
-          answers.managerOfficeNumber
-      );
-  })
+const managerEntry = (employee) => {
+  inquirer
+    .prompt({
+      type: "input",
+      name: "managerOfficeNumber",
+      message: "Please enter the Manager's office number: ",
+      validate: (officeInput) => {
+        if (officeInput) {
+          return true;
+        } else {
+          console.log("Please enter a name!");
+          return false;
+        }
+      },
+    })
+    .then((answers) => {
+      const manager = new Manager(answers.managerOfficeNumber);
+      employee.push(manager);
+    });
 };
 
 const engineerEntry = () => {
