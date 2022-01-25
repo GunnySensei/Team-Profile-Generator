@@ -20,7 +20,7 @@ body {
   background-color: var(--secondary);
   margin: 0;
   padding: 0;
-  font-family: 'Public Sans', sans-serif;
+  font-family: "Public Sans", sans-serif;
   font-weight: 300;
   color: var(--dark);
   line-height: 1.5;
@@ -35,7 +35,7 @@ h5,
 h6 {
   font-weight: 500;
   margin: 5px 0;
-  color: var(--dark);
+  color: var(--primary);
   line-height: 1.25;
 }
 
@@ -49,6 +49,7 @@ h2 {
 
 h3 {
   font-size: 1.75rem;
+  color: #272f32;
 }
 
 h4 {
